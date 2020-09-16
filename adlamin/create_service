@@ -19,4 +19,4 @@ create_router $NETWORK $ROUTER_IP
 forward_to_server dmz $NETWORK 172.18.0.2 $ROUTER_IP tcp 8080
 forward_to_server $NETWORK $NETWORK $ROUTER_IP $SUBNET tcp $PORT
 
-add_server $NETWORK $URL $ROUTER_IP
+add_server dmz $URL $ROUTER_IP
