@@ -1,0 +1,12 @@
+#!/bin/bash
+
+export ADLAMIN_HOME=$(pwd -P)
+
+source $ADLAMIN_HOME/firewall/iptables.sh
+source $ADLAMIN_HOME/network.sh
+source $ADLAMIN_HOME/router.sh
+
+create_network dmz 172.18.0.0/24
+create_router dmz 172.18.0.2
+
+forward_to_server_from_any eth0 dmz 172.18.0.2 tcp 8080

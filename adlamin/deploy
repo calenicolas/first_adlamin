@@ -1,0 +1,32 @@
+#!/bin/bash
+
+export ADLAMIN_HOME=$(pwd -P)
+
+source $ADLAMIN_HOME/git.sh
+source $ADLAMIN_HOME/docker.sh
+source $ADLAMIN_HOME/router.sh
+
+SERVICE=$1
+VERSION=$2
+
+cd $SERVICE
+source .service
+
+IMAGE=$PROYECT_NAME:$VERSION
+
+clone $GIT_REPO TEMP_$PROYECT_NAME
+
+cd TEMP_$PROYECT_NAME
+docker_build $IMAGE
+cd ..
+rm -rf TEMP_$PROYECT_NAME
+
+docker_stop $PROYECT_NAME
+
+IP=$(docker_run $IMAGE $PROYECT_NAME $NETWORK)
+
+echo $IP
+
+add_route $NETWORK $SERVICE_PATH $IP $PORT
+
+router_reload $NETWORK
