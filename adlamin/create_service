@@ -20,3 +20,4 @@ forward_to_server dmz $NETWORK 172.18.0.2 $ROUTER_IP tcp 8080
 forward_to_server $NETWORK $NETWORK $ROUTER_IP $SUBNET tcp $PORT
 
 add_server dmz $URL $ROUTER_IP
+router_reload dmz
