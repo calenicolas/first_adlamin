@@ -10,4 +10,5 @@ source $ADLAMIN_HOME/router.sh
 create_network dmz 172.18.0.0/24
 create_router dmz 172.18.0.2
 
+delete_forward_to_server_from_any eth0 dmz 172.18.0.2 tcp 8080
 forward_to_server_from_any eth0 dmz 172.18.0.2 tcp 8080

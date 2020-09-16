@@ -16,7 +16,9 @@ source .service
 create_network $NETWORK $SUBNET
 create_router $NETWORK $ROUTER_IP
 
+delete_forward_to_server dmz $NETWORK 172.18.0.2 $ROUTER_IP tcp 8080
 forward_to_server dmz $NETWORK 172.18.0.2 $ROUTER_IP tcp 8080
+delete_forward_to_server $NETWORK $NETWORK $ROUTER_IP $SUBNET tcp $PORT
 forward_to_server $NETWORK $NETWORK $ROUTER_IP $SUBNET tcp $PORT
 
 add_server dmz $URL $ROUTER_IP
