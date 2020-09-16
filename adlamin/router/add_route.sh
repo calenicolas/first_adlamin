@@ -3,7 +3,7 @@
 
 # usage
 # ./assign_traffic network path ip port
-
+$NETWORK $SERVICE_PATH $IP $PORT
 add_route() {
 
     writeUpstreamCommand="write_upstream.sh $2 $3 $4"
