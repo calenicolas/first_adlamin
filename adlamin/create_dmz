@@ -1,6 +1,7 @@
 #!/bin/bash
 
-export ADLAMIN_HOME=$(pwd -P)
+SCRIPT=`realpath $0`
+export ADLAMIN_HOME=`dirname $SCRIPT`
 
 source $ADLAMIN_HOME/firewall/iptables.sh
 source $ADLAMIN_HOME/network.sh
