@@ -3,6 +3,7 @@ FROM nginx:latest
 COPY router.conf /etc/nginx/nginx.conf
 
 RUN mkdir /etc/nginx/upstreams
+RUN mkdir /etc/nginx/servers
 
 COPY write_upstream.sh /usr/local/bin/
 COPY write_server.sh /usr/local/bin/
