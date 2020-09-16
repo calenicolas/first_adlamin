@@ -28,6 +28,6 @@ IP=$(docker_run $IMAGE $PROYECT_NAME $NETWORK)
 
 echo $IP
 
-add_route $NETWORK $SERVICE_PATH $IP $PORT
+add_route dmz $SERVICE_PATH $IP $PORT
 
 router_reload $NETWORK
