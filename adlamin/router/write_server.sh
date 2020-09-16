@@ -1,6 +1,6 @@
 echo "server {
 
-    server_name $1
+    server_name $2
 
     add_header X-Frame-Options" 'SAMEORIGIN' ";
 
@@ -8,7 +8,7 @@ echo "server {
     access_log /var/log/nginx/access.log compression;
 
     location / {
-        proxy_pass http://$2:8080;
+        proxy_pass http://$3:8080;
         rewrite /(.*) " '/$1' " break;
         proxy_http_version 1.1;
         proxy_set_header Upgrade" ' $http_upgrade;

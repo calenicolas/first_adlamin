@@ -6,7 +6,7 @@
 
 add_server() {
 
-    writeUpstreamCommand="write_server.sh $2 $3"
+    writeUpstreamCommand="write_server.sh $1 $2 $3"
 
     command="sudo docker exec router_$1 sh -c '$writeUpstreamCommand'"
 
