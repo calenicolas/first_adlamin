@@ -4,7 +4,7 @@
 # usage
 # ./assign_traffic network url ip
 
-add_route() {
+add_server() {
 
     writeUpstreamCommand="add_server.sh $2 $3"
 

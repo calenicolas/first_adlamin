@@ -10,7 +10,5 @@ add_route() {
 
     command="sudo docker exec router_$1 sh -c '$writeUpstreamCommand'"
 
-    sudo docker exec router_$1 nginx -s reload
-
     eval $command
 }
