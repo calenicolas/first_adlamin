@@ -5,7 +5,7 @@ source $ADLAMIN_HOME/mainteinance/docker.sh
 create_router() {
     enable_docker_build
 
-    sudo docker build -t router_$1 /home/mulo/adlamin/router
+    sudo docker build -t router_$1 $ADLAMIN_HOME/router
 
     sudo docker stop router_$1
 
