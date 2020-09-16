@@ -21,8 +21,8 @@ disable_forward_client(){
 }
 
 delete_forward_to_server() {
-    sudo iptables -I FORWARD -i $1 -o $2 -s $3 -d $4 -p $5 --dport $6 -m state --state NEW,ESTABLISHED -j ACCEPT
-    sudo iptables -I FORWARD -o $1 -i $2 -d $3 -s $4 -p $5 --sport $6 -m state --state ESTABLISHED -j ACCEPT
+    sudo iptables -D FORWARD -i $1 -o $2 -s $3 -d $4 -p $5 --dport $6 -m state --state NEW,ESTABLISHED -j ACCEPT
+    sudo iptables -D FORWARD -o $1 -i $2 -d $3 -s $4 -p $5 --sport $6 -m state --state ESTABLISHED -j ACCEPT
 }
 
 forward_to_server() {
