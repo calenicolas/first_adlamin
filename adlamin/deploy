@@ -23,7 +23,11 @@ rm -rf TEMP_$PROJECT_NAME
 
 docker_stop $PROJECT_NAME
 
+if test $IS_PERSISTENT -eq 1; then
+IP=$(docker_run_with_persistence $IMAGE $PROJECT_NAME $NETWORK $PERSISTENCE_PATH)
+else
 IP=$(docker_run $IMAGE $PROJECT_NAME $NETWORK)
+fi
 
 add_route $NETWORK $IP $PORT
 
