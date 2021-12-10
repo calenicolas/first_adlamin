@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SCRIPT=`realpath $0`
-export ADLAMIN_HOME=`dirname $SCRIPT`
+SCRIPT=$(realpath $0)
+export ADLAMIN_HOME=`dirname $SCRIPT` || return
 
 source $ADLAMIN_HOME/firewall/iptables.sh
 source $ADLAMIN_HOME/network.sh
@@ -9,6 +9,7 @@ source $ADLAMIN_HOME/router.sh
 
 SERVICE=$1
 URL=$2
+DOMAIN_NAME=$3
 
 cd $SERVICE || return
 source .service
@@ -25,7 +26,7 @@ forward_to_server dmz $NETWORK $DMZ_ROUTER_IP $ROUTER_IP tcp 8080
 forward_to_server $NETWORK $NETWORK $ROUTER_IP $SUBNET tcp $PORT
 
 # Suma en el router de la dmz la url con la ip del router del servicio
-add_server dmz $SERVICE $URL $ROUTER_IP
+add_server dmz $SERVICE $URL.$DOMAIN_NAME $ROUTER_IP
 router_reload dmz
 
 # INTERNAL
@@ -35,3 +36,7 @@ forward_to_server internal $NETWORK $INTERNAL_ROUTER_IP $ROUTER_IP tcp 8080
 
 # Permite el trafico el router del servicio hacia el router de internal
 forward_to_server $NETWORK internal $ROUTER_IP $INTERNAL_ROUTER_IP tcp 8080
+
+# Suma en el router de internal la url con la ip del router del servicio
+add_server internal $SERVICE internal.$URL.$DOMAIN_NAME $ROUTER_IP
+router_reload internal
