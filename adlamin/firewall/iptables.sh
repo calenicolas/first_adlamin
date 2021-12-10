@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 enable_client(){
     sudo iptables -I INPUT -i eth0 -p $1 --sport $2 -m state --state ESTABLISHED -j ACCEPT
@@ -26,6 +26,8 @@ delete_forward_to_server() {
 }
 
 forward_to_server() {
+    delete_forward_to_server $1 $2 $3 $4 $5 $6
+
     sudo iptables -I FORWARD -i $1 -o $2 -s $3 -d $4 -p $5 --dport $6 -m state --state NEW,ESTABLISHED -j ACCEPT
     sudo iptables -I FORWARD -o $1 -i $2 -d $3 -s $4 -p $5 --sport $6 -m state --state ESTABLISHED -j ACCEPT
 }
@@ -36,6 +38,8 @@ delete_forward_to_server_from_any() {
 }
 
 forward_to_server_from_any() {
+    delete_forward_to_server_from_any $1 $2 $3 $4 $5
+
     sudo iptables -I FORWARD -i $1 -o $2 -d $3 -p $4 --dport $5 -m state --state NEW,ESTABLISHED -j ACCEPT
     sudo iptables -I FORWARD -o $1 -i $2 -s $3 -p $4 --sport $5 -m state --state ESTABLISHED -j ACCEPT
 }

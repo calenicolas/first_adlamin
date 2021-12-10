@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "creating dmz"...
+./crete_dmz
+echo "done"
+
+echo "creating internal"
+./create_internal
+echo "done"

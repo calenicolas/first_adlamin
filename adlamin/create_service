@@ -10,16 +10,28 @@ source $ADLAMIN_HOME/router.sh
 SERVICE=$1
 URL=$2
 
-cd $SERVICE
+cd $SERVICE || return
 source .service
 
 create_network $NETWORK $SUBNET
 create_router $NETWORK $ROUTER_IP
 
-delete_forward_to_server dmz $NETWORK 172.18.0.2 $ROUTER_IP tcp 8080
-forward_to_server dmz $NETWORK 172.18.0.2 $ROUTER_IP tcp 8080
-delete_forward_to_server $NETWORK $NETWORK $ROUTER_IP $SUBNET tcp $PORT
+# DMZ
+
+# Permite el trafico desde la dmz al router del servicio
+forward_to_server dmz $NETWORK $DMZ_ROUTER_IP $ROUTER_IP tcp 8080
+
+# Permite el trafico desde el router del servicio a los hosts(subnet) del servicio
 forward_to_server $NETWORK $NETWORK $ROUTER_IP $SUBNET tcp $PORT
 
+# Suma en el router de la dmz la url con la ip del router del servicio
 add_server dmz $SERVICE $URL $ROUTER_IP
 router_reload dmz
+
+# INTERNAL
+
+# Permite el trafico desde internal al router del servicio
+forward_to_server internal $NETWORK $INTERNAL_ROUTER_IP $ROUTER_IP tcp 8080
+
+# Permite el trafico el router del servicio hacia el router de internal
+forward_to_server $NETWORK internal $ROUTER_IP $INTERNAL_ROUTER_IP tcp 8080
