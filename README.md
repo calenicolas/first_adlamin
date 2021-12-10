@@ -11,9 +11,9 @@ Un debian con iptables con politicas en DROP.
 
 ## Comandos
 
-*create_dmz*: Crea un ambiente que recibe los requests en una interfaz publica.
+*install*: Inicializa adlamin creando la dmz y la red internal.
 
-*create_service*: Crea un servicio.
+*create_service*: Crea un servicio. Recibe nombre, url y dominio.
 
 *deploy*: Deploya un servicio.
 
@@ -22,11 +22,12 @@ Un debian con iptables con politicas en DROP.
 Tendremos un directorio, en algun lugar de nuestro VPS que tendra mas subdirectorios. Cada uno contendra un archivo *.service* donde se configurara lo siguiente:
 
 ```bash
-export NETWORK= 
-export SUBNET=
-export ROUTER_IP=
-export PORT=
-export PROYECT_NAME=
-export GIT_REPO=
-export SERVICE_PATH=
+export NETWORK=#La red
+export SUBNET=#La subred donde el servicio va a correr
+export ROUTER_IP=#La ip del router del servicio
+export PORT=#El puerto que el servicio expone
+export PROJECT_NAME=#El nombre del servicio (que tiene que matchear con el nombre del repo)
+export GIT_REPO=#Ruta ssh del repo
+export IS_PRIVATE=#1 Para registrar el servicio en la red interna
+export IS_PUBLIC=#1 Para registrar el servicio en la red publica
 ```
