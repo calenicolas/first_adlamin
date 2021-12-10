@@ -7,7 +7,7 @@ source $ADLAMIN_HOME/git.sh
 source $ADLAMIN_HOME/docker.sh
 source $ADLAMIN_HOME/router.sh
 
-VERSION=$2
+VERSION=$1
 
 cd $PROJECT_NAME
 source .service

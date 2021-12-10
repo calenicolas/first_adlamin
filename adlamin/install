@@ -1,5 +1,8 @@
 #!/bin/bash
 
+SCRIPT=`realpath $0`
+ADLAMIN_HOME=`dirname $SCRIPT`
+
 echo "creating dmz"...
 ./crete_dmz
 echo "done"
@@ -7,3 +10,6 @@ echo "done"
 echo "creating internal"
 ./create_internal
 echo "done"
+
+echo "add this into .bash_profile"
+echo "export PATH=$PATH:$ADLAMIN_HOME/bin"
