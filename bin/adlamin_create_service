@@ -1,0 +1,3 @@
+#!/bin/bash
+
+../adlamin/create_service $1 $2

@@ -1,3 +1,0 @@
-#!/bin/bash
-
-../create_service $1 $2

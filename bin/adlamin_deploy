@@ -1,0 +1,3 @@
+#!/bin/bash
+
+../adlamin/deploy $1
