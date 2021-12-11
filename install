@@ -4,11 +4,11 @@ SCRIPT=`realpath $0`
 ADLAMIN_BIN=`dirname $SCRIPT`
 
 echo "creating dmz"...
-./crete_dmz
+./adlamin/crete_dmz
 echo "done"
 
 echo "creating internal"
-./create_internal
+./adlamin/create_internal
 echo "done"
 
 echo "add this into .bash_profile"
