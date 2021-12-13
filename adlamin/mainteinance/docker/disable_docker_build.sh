@@ -12,5 +12,5 @@ disable_docker_build() {
     disable_https_forward_client docker0
     disable_http_forward_client docker0
 
-    sudo iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+    iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
 }

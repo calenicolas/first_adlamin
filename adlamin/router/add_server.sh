@@ -8,7 +8,7 @@ add_server() {
 
     writeUpstreamCommand="write_server.sh $2 $3 $4"
 
-    command="sudo docker exec router_$1 sh -c '$writeUpstreamCommand'"
+    command="docker exec router_$1 sh -c '$writeUpstreamCommand'"
 
     eval $command
 }
