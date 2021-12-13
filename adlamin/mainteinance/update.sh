@@ -8,8 +8,8 @@ enable_http_client
 enable_https_client
 enable_dns_client
 
-apt update
-apt upgrade
+sudo apt update
+sudo apt upgrade
 
 disable_dns_client
 disable_http_client

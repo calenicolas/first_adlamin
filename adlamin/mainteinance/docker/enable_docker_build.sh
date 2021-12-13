@@ -13,5 +13,5 @@ enable_docker_build() {
     enable_https_forward_client docker0
     enable_http_forward_client docker0
 
-    iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+    sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 }
