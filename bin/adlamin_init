@@ -1,13 +1,13 @@
 #!/bin/bash
 
-echo "export NETWORK=
-export SUBNET=
-export ROUTER_IP=
-export PORT=
-export PROJECT_NAME=
-export GIT_REPO=
-export IS_PRIVATE=
-export IS_PUBLIC=
-export IS_PERSISTENT=
-export PERSISTENCE_PATH=" > .service
+echo "export NETWORK=10.0.0.0
+export SUBNET=/8
+export ROUTER_IP=10.200.200.200
+export PORT=8080
+export PROJECT_NAME=example
+export GIT_REPO=git.repo.com
+export IS_PRIVATE=1
+export IS_PUBLIC=1
+export IS_PERSISTENT=1
+export PERSISTENCE_PATH=/home/mysql/data" > .service
 

@@ -1,3 +1,6 @@
 #!/bin/bash
 
-../adlamin/create_service $1 $2
+SCRIPT=$(realpath $0)
+export ADLAMIN_HOME=`dirname $SCRIPT`
+
+$ADLAMIN_HOME/adlamin/create_service $1 $2

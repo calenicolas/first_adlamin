@@ -12,4 +12,4 @@ echo "creating internal"
 echo "done"
 
 echo "add this into .bash_profile"
-echo "export PATH=$PATH:$ADLAMIN_BIN/bin"
+echo "export PATH=\$PATH:$ADLAMIN_BIN/bin"
