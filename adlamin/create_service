@@ -11,7 +11,6 @@ URL=$1
 DOMAIN_NAME=$2
 
 source .service
-cd $PROJECT_NAME
 
 create_network $NETWORK $SUBNET
 create_router $NETWORK $ROUTER_IP
