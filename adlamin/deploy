@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SCRIPT=`realpath $0`
-export ADLAMIN_HOME=`dirname $SCRIPT`
+SCRIPT=$(realpath $0)
+export ADLAMIN_HOME=`dirname $SCRIPT` || return
 
 source $ADLAMIN_HOME/git.sh
 source $ADLAMIN_HOME/docker.sh
@@ -9,7 +9,6 @@ source $ADLAMIN_HOME/router.sh
 
 VERSION=$1
 
-cd $PROJECT_NAME
 source .service
 
 IMAGE=$PROJECT_NAME:$VERSION

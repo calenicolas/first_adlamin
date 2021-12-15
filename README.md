@@ -22,7 +22,7 @@ Un debian con iptables con politicas en DROP.
 Tendremos un directorio, en algun lugar de nuestro VPS que tendra mas subdirectorios. Cada uno contendra un archivo *.service* donde se configurara lo siguiente:
 
 ```bash
-export NETWORK=#La red
+export NETWORK=#Nombre de la red
 export SUBNET=#La subred donde el servicio va a correr
 export ROUTER_IP=#La ip del router del servicio
 export PORT=#El puerto que el servicio expone
