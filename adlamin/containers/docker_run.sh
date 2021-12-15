@@ -9,6 +9,8 @@ getIpAddress () {
 
 docker_run() {
 
+    echo "docker run --network=\"$3\" --name=\"$2\" -d --rm $1"
+
     ID=$(sudo docker run --network="$3" --name="$2" -d --rm $1)
 
     sleep 5s
