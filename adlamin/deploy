@@ -24,11 +24,12 @@ docker_stop $PROJECT_NAME
 
 if test $IS_PERSISTENT -eq 1; then
 IP=$(docker_run_with_persistence $IMAGE $PROJECT_NAME $NETWORK $PERSISTENCE_PATH)
+echo "Container wp ip is $IP"
 else
 IP=$(docker_run $IMAGE $PROJECT_NAME $NETWORK)
+echo "Container ip is $IP"
 fi
 
-echo "Container ip is $IP"
 
 add_route $NETWORK $IP $PORT
 
