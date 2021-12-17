@@ -30,7 +30,6 @@ IP=$(docker_run $IMAGE $PROJECT_NAME $NETWORK)
 echo "Container ip is $IP"
 fi
 
-
 add_route $NETWORK $IP $PORT
 
 router_reload $NETWORK
