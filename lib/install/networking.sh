@@ -2,7 +2,7 @@
 
 source /usr/local/lib/adlamin/firewall/iptables.sh
 source /usr/local/lib/adlamin/network.sh
-source /usr/local/lib/adlamin/router.sh
+source /usr/local/lib/adlamin/router/router.sh
 
 function create_dmz() {
   # ARGS
