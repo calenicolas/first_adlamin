@@ -1,0 +1,26 @@
+#!/bin/bash
+
+source /usr/local/lib/adlamin/port-knocking/knockd_configuration.sh
+
+echo "Ingrese el noombre del servicio a proteger"
+read KNOCK_NAME
+
+echo "Ingrese sin espacios y separados por coma la secuencia de apertura"
+read OPEN_SEQUENCE
+
+echo "Ingrese sin espacios y separados por coma la secuencia de clausura"
+read CLOSE_SEQUENCE
+
+echo "Ingrese la interfaz desde donde vienen los requests"
+read INPUT_INTERFACE
+
+echo "Ingrese la interfaz desde donde tenemos acceso al servicio a proteger"
+read OUTPUT_INTERFACE
+
+echo "Ingrese la IP del servicio a proteger"
+read DESTINATION_IP
+
+echo "Ingrese el puerto del servicio a proteger"
+read DESTINATION_PORT
+
+add_forward_knock $KNOCK_NAME $OPEN_SEQUENCE $CLOSE_SEQUENCE $INPUT_INTERFACE $OUTPUT_INTERFACE $DESTINATION_IP $DESTINATION_PORT

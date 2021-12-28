@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source /usr/local/lib/adlamin/deploy.sh
+
+deploy $1 $2

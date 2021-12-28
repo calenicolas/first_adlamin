@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#ARGS
+INPUT_INTERFACE=$1
+DESTINATION_PORT=$2
+IP=$3
+
+/usr/sbin/iptables -D INPUT_PORT_KNOCKING \
+  -i $INPUT_INTERFACE \
+  -s $IP \
+  --dport $DESTINATION_PORT \
+  -m STATE \
+  --state NEW,ESTABLISHED \
+  -j ACCEPT
+
+/usr/sbin/iptables -D OUTPUT_PORT_KNOCKING \
+  -i $INPUT_INTERFACE \
+  -d $IP \
+  --sport $DESTINATION_PORT \
+  -m STATE \
+  --state ESTABLISHED \
+  -j ACCEPT

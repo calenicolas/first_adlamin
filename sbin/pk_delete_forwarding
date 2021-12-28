@@ -1,0 +1,28 @@
+#!/bin/bash
+
+#ARGS
+INPUT_INTERFACE=$1 
+OUTPUT_INTERFACE=$2 
+IP=$3
+DESTINATION=$4
+DESTINATION_PORT=$5
+
+/usr/sbin/iptables -D FORWARD_PORT_KNOCKING \
+  -i $INPUT_INTERFACE \
+  -o $OUTPUT_INTERFACE \
+  -s $IP \
+  -d $DESTINATION \
+  --dport $DESTINATION_PORT \
+  -m STATE \
+  --state NEW,ESTABLISHED \
+  -j ACCEPT
+  
+/usr/sbin/iptables -D FORWARD_PORT_KNOCKING \
+  -o $INPUT_INTERFACE \
+  -i $OUTPUT_INTERFACE \
+  -d $IP \
+  -s $DESTINATION \
+  --sport $DESTINATION_PORT \
+  -m STATE \
+  --state ESTABLISHED \
+  -j ACCEPT

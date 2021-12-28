@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source /usr/local/lib/adlamin/create_service.sh
+
+create_service $1 $2

@@ -1,15 +1,51 @@
 #!/bin/bash
 
-SCRIPT=`realpath $0`
-ADLAMIN_BIN=`dirname $SCRIPT`
+cp -r ./lib /usr/local/lib/adlamin
 
-echo "creating dmz"...
-./adlamin/create_dmz
+chmod +x ./sbin/*
+cp ./sbin/* /usr/local/sbin
+
+chmod +x ./bin/*
+cp ./bin/* /usr/local/bin
+
+./setup
+
+source /usr/local/lib/adlamin/install/networking.sh
+source /usr/local/lib/adlamin/firewall/iptables.sh
+
+function setup_dmz(){
+  echo "DMZ Source: [eth0]"
+  read PUBLIC_INTERFACE
+
+  echo "DMZ Network Range: [172.18.0.0/24]"
+  read DMZ_NETWORK
+
+  echo "DMZ Router IP: [172.18.0.2]"
+  read DMZ_ROUTER_IP
+
+  echo "creating dmz"...
+  create_dmz $PUBLIC_INTERFACE $DMZ_NETWORK $DMZ_ROUTER_IP
+  echo "done"
+}
+
+function setup_internal(){
+  echo "Internal Source: [eth0]"
+  read INTERNAL_INTERFACE
+
+  echo "Internal Network Range: [172.19.0.0/24]"
+  read INTERNAL_NETWORK
+
+  echo "Internal Router IP: [172.19.0.2]"
+  read INTERNAL_ROUTER_IP
+
+  echo "creating internal"...
+  create_internal $INTERNAL_INTERFACE $INTERNAL_NETWORK $INTERNAL_ROUTER_IP
+  echo "done"
+}
+
+setup_dmz
+setup_internal
+
+echo "creating iptables rules"
+create_iptables
 echo "done"
-
-echo "creating internal"
-./adlamin/create_internal
-echo "done"
-
-echo "add this into .bash_profile"
-echo "export PATH=\$PATH:$ADLAMIN_BIN/bin"
