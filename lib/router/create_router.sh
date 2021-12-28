@@ -2,7 +2,7 @@
 
 source /usr/local/lib/adlamin/mainteinance/docker.sh
 
-create_router() {
+function create_router() {
     enable_docker_build
 
     docker build -t router_$1 /usr/local/lib/adlamin/router
