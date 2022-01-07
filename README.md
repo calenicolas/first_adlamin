@@ -7,7 +7,7 @@ Docker instalado
 
 ## Ambiente recomendado
 
-Un debian con iptables con politicas en DROP.
+Un debian fresco.
 
 ## Comandos
 
