@@ -22,7 +22,10 @@ function onConnected() {
 }
 
 function create(commandArguments) {
-    client.send("create", commandArguments);
+    if (commandArguments.length != 2) {
+        throw new Error("Bad usage. The correct usage is `adlamin create url domain`");
+    }
+    client.send("create", commandArguments.concat([process.env.PWD]));
 }
 
 function deploy(commandArguments) {

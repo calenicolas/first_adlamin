@@ -1,3 +1,5 @@
 .idea
 service/adlamin.js/bitbucket
 service/node_modules
+bin/adlamin
+service/daemon

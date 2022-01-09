@@ -8,7 +8,7 @@ ipc.config.retry = 1500;
 ipc.serve(() => {
 
     ipc.server.on('create', (data,socket) => {
-        ipc.log("dale kpo");
+        run("/usr/local/sbin/adlamin_create_service " + data.join(" "));
     });
 
     ipc.server.on('socket.disconnected', (socket, destroyedSocketID) => {
