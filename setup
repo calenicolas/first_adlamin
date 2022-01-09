@@ -23,6 +23,7 @@ apt install -y \
   docker \
   nodejs \
   knockd \
+  iptables-persistent \
   npm
 
 curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -54,6 +55,6 @@ SSH_CLIENT=$(echo $SSH_CLIENT | awk '{ print $1}')
 iptables -A INPUT -i $SSH_INTERFACE -p tcp --dport 22 -m state --state NEW,ESTABLISHED -s $SSH_CLIENT -j  ACCEPT
 iptables -A OUTPUT -o $SSH_INTERFACE -p tcp --sport 22 -m state --state ESTABLISHED -d $SSH_CLIENT -j  ACCEPT
 
-apt install iptables-persistent
+iptables-save > /etc/iptables/rules.v4
 
 nano /etc/default/knockd

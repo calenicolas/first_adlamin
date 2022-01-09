@@ -1,26 +1,25 @@
 
-const ipc = require("node-ipc");
+const ipc = require('node-ipc').default;
 
 ipc.config.id = "com.calenicolas.adlamin.daemon";
 ipc.config.retry = 1500;
 
 function connect(callback) {
     ipc.connectTo(
-        "adlamin-daemon",
+        "com.calenicolas.adlamin.daemon",
         () => successfulConnection(callback)
     );
 }
 
 function successfulConnection(callback) {
-    ipc.of["adlamin-daemon"].on(
+    ipc.of["com.calenicolas.adlamin.daemon"].on(
         "connect",
         function(){
-            ipc.log("## connected to world ##".rainbow, ipc.config.delay);
             callback();
         }
     );
 
-    ipc.of["adlamin-daemon"].on(
+    ipc.of["com.calenicolas.adlamin.daemon"].on(
         "message",  //any event or message type your server listens for
         function(data){
             ipc.log("got a message from world : ".debug, data);
@@ -29,7 +28,7 @@ function successfulConnection(callback) {
 }
 
 function send(topic, message) {
-    ipc.of["adlamin-daemon"].emit(topic, message);
+    ipc.of["com.calenicolas.adlamin.daemon"].emit(topic, message);
 }
 
 module.exports = {

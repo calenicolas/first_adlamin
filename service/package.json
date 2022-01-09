@@ -1,0 +1,17 @@
+{
+  "name": "service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "adlamin.js",
+  "scripts": {
+    "build": "pkg adlamin.js -o ../bin/adlamin; pkg socket-daemon.js -o daemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-ipc": "^10.1.0",
+    "nvm": "^0.0.4",
+    "pkg": "5.5.1"
+  },
+  "bin": "./adlamin.js"
+}

@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 
 const readline = require("readline");
 const client = require("./socket-client");
@@ -18,7 +17,7 @@ function onConnected() {
         deploy(commandArguments);
         break;
       default:
-        console.log("Sorry, that is not something I know how to do.");
+        process.exit(0)
     }
 }
 

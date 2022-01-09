@@ -1,6 +1,0 @@
-#!/bin/bash
-
-SCRIPT=$(realpath $0)
-export ADLAMIN_HOME=`dirname $SCRIPT`
-
-$ADLAMIN_HOME/../adlamin/deploy $1
