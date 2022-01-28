@@ -4,7 +4,7 @@ source /usr/local/lib/adlamin/git.sh
 source /usr/local/lib/adlamin/docker.sh
 source /usr/local/lib/adlamin/router.sh
 
-function deploy() {
+deploy() {
   #ARGS
   VERSION=$1
   SERVICE_PATH=$2

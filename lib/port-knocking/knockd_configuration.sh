@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function add_forward_knock() {
+add_forward_knock() {
 
   KNOCK_NAME=$1
   OPEN_SEQUENCE=$2
@@ -27,7 +27,7 @@ function add_forward_knock() {
     command     = $COMMAND" >> /etc/knockd.conf
 }
     
-function add_input_knock() {
+add_input_knock() {
 
   KNOCK_NAME=$1
   OPEN_SEQUENCE=$2

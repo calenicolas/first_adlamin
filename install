@@ -1,5 +1,33 @@
 #!/bin/bash
 
+source /usr/local/lib/adlamin/install/networking.sh
+source /usr/local/lib/adlamin/firewall/iptables.sh
+
+install_dependencies() {
+  apt update
+  apt upgrade -y
+
+  apt install -y \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release \
+    docker \
+    nodejs \
+    knockd \
+    iptables-persistent \
+    npm
+
+  curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+  echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
+    $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+  apt update
+  apt install -y docker-ce docker-ce-cli containerd.io
+}
+
 cp -r ./lib /usr/local/lib/adlamin
 
 chmod +x ./sbin/*
@@ -8,44 +36,25 @@ cp ./sbin/* /usr/local/sbin
 chmod +x ./bin/*
 cp ./bin/* /usr/local/bin
 
-./setup
-
-source /usr/local/lib/adlamin/install/networking.sh
-source /usr/local/lib/adlamin/firewall/iptables.sh
-
-function setup_dmz(){
-  echo "DMZ Source: [eth0]"
-  read PUBLIC_INTERFACE
-
-  echo "DMZ Network Range: [172.18.0.0/24]"
-  read DMZ_NETWORK
-
-  echo "DMZ Router IP: [172.18.0.2]"
-  read DMZ_ROUTER_IP
-
-  echo "creating dmz"...
-  create_dmz $PUBLIC_INTERFACE $DMZ_NETWORK $DMZ_ROUTER_IP
-  echo "done"
-}
-
-function setup_internal(){
-  echo "Internal Source: [eth0]"
-  read INTERNAL_INTERFACE
-
-  echo "Internal Network Range: [172.19.0.0/24]"
-  read INTERNAL_NETWORK
-
-  echo "Internal Router IP: [172.19.0.2]"
-  read INTERNAL_ROUTER_IP
-
-  echo "creating internal"...
-  create_internal $INTERNAL_INTERFACE $INTERNAL_NETWORK $INTERNAL_ROUTER_IP
-  echo "done"
-}
-
-setup_dmz
-setup_internal
+install_dependencies
 
 echo "creating iptables rules"
 create_iptables
 echo "done"
+
+echo "Ingrese la interfaz donde escucha actualmente el servicio de ssh"
+read SSH_INTERFACE
+
+drop_all
+
+SSH_CLIENT=$(echo $SSH_CLIENT | awk '{ print $1}')
+enable_server_for $SSH_INTERFACE tcp 22 $SSH_CLIENT
+
+load_input_filters
+
+iptables-save > /etc/iptables/rules.v4
+
+nano /etc/default/knockd
+
+setup_dmz
+setup_internal

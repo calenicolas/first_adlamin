@@ -2,4 +2,4 @@
 service/adlamin.js/bitbucket
 service/node_modules
 bin/adlamin
-service/daemon
+sbin/adlamin_daemon/adlamin_daemon

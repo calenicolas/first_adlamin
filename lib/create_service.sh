@@ -4,7 +4,7 @@ source /usr/local/lib/adlamin/firewall/iptables.sh
 source /usr/local/lib/adlamin/network.sh
 source /usr/local/lib/adlamin/router.sh
 
-function create_service() {
+create_service() {
   #ARGS
   URL=$1
   DOMAIN_NAME=$2
