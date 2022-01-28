@@ -1,5 +1,13 @@
 #!/bin/bash
 
+cp -r ./lib /usr/local/lib/adlamin
+
+chmod +x ./sbin/*
+cp ./sbin/* /usr/local/sbin
+
+chmod +x ./bin/*
+cp ./bin/* /usr/local/bin
+
 source /usr/local/lib/adlamin/install/networking.sh
 source /usr/local/lib/adlamin/firewall/iptables.sh
 
@@ -27,14 +35,6 @@ install_dependencies() {
   apt update
   apt install -y docker-ce docker-ce-cli containerd.io
 }
-
-cp -r ./lib /usr/local/lib/adlamin
-
-chmod +x ./sbin/*
-cp ./sbin/* /usr/local/sbin
-
-chmod +x ./bin/*
-cp ./bin/* /usr/local/bin
 
 install_dependencies
 
