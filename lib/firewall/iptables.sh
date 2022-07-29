@@ -1,6 +1,11 @@
 #!/bin/bash
 
 create_iptables() {
+
+  iptables -F
+  iptables -X
+  iptables -Z
+
   create_chain ADLAMIN-INPUT
   create_chain ADLAMIN-OUTPUT
   create_chain ADLAMIN-FORWARD
