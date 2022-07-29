@@ -7,7 +7,7 @@ IP=$3
 DESTINATION=$4
 DESTINATION_PORT=$5
 
-/usr/sbin/iptables -D FORWARD_PORT_KNOCKING \
+/usr/sbin/iptables -D FORWARD_PK \
   -i $INPUT_INTERFACE \
   -o $OUTPUT_INTERFACE \
   -s $IP \
@@ -17,7 +17,7 @@ DESTINATION_PORT=$5
   --state NEW,ESTABLISHED \
   -j ACCEPT
   
-/usr/sbin/iptables -D FORWARD_PORT_KNOCKING \
+/usr/sbin/iptables -D FORWARD_PK \
   -o $INPUT_INTERFACE \
   -i $OUTPUT_INTERFACE \
   -d $IP \
