@@ -4,6 +4,7 @@ create_iptables() {
   create_chain ADLAMIN-INPUT
   create_chain ADLAMIN-OUTPUT
   create_chain ADLAMIN-FORWARD
+  echo "dale viejo"
   create_chain ADLAMIN-FORWARD_PK
   create_chain ADLAMIN-INPUT_FILTERS
 
