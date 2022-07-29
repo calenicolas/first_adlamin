@@ -14,16 +14,19 @@ create_service() {
   INTERNAL_ROUTER_IP=$6
   GIT_REPO=$7
 
-
   echo "subnet [172.28.0.0/16]"
   read SUBNET
   echo "router ip [172.28.255.254]"
   read ROUTER_IP
   echo "port [8080]"
   read PORT
+  echo "is private ? [0]"
   read IS_PRIVATE
+  echo "is public ? [0]"
   read IS_PUBLIC
+  echo "needs to persist data ? [this does not works]"
   read IS_PERSISTENT
+  echo "persistence data path [this does not works]"
   read PERSISTENCE_PATH
 
   create_network $PROJECT_NAME $SUBNET
