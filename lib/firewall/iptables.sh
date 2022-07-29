@@ -13,6 +13,9 @@ create_iptables() {
   create_chain ADLAMIN-INPUT_FILTERS
 
   create_chain DOCKER
+  create_chain DOCKER_ISOLATION_STAGE_1
+  create_chain DOCKER_ISOLATION_STAGE_2
+  create_chain DOCKER_ISOLATION_STAGE_3
 
   iptables -A INPUT -j ADLAMIN-INPUT
 
