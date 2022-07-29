@@ -4,7 +4,7 @@ create_iptables() {
   create_chain ADLAMIN-INPUT
   create_chain ADLAMIN-OUTPUT
   create_chain ADLAMIN-FORWARD
-  create_chain ADLAMIN-FORWARD_PORT_KNOCKING
+  create_chain ADLAMIN-FORWARD_PK
   create_chain ADLAMIN-INPUT_FILTERS
 
   iptables -D INPUT -j ADLAMIN-INPUT
@@ -16,8 +16,8 @@ create_iptables() {
   iptables -D FORWARD -j ADLAMIN-FORWARD
   iptables -A FORWARD -j ADLAMIN-FORWARD
 
-  iptables -D FORWARD -j ADLAMIN-FORWARD_PORT_KNOCKING
-  iptables -A FORWARD -j ADLAMIN-FORWARD_PORT_KNOCKING
+  iptables -D FORWARD -j ADLAMIN-FORWARD_PK
+  iptables -A FORWARD -j ADLAMIN-FORWARD_PK
 }
 
 enable_client(){
