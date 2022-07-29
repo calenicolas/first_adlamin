@@ -7,6 +7,8 @@ failure() {
   local msg=$2
   echo "Failed at $lineno: $msg"
 }
+
+trap backtrace ERR
 trap 'failure ${LINENO} "$BASH_COMMAND"' ERR
 
 
