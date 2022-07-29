@@ -11,7 +11,7 @@ failure() {
 trap backtrace ERR
 trap 'failure ${LINENO} "$BASH_COMMAND"' ERR
 
-
+rm -rf /usr/local/lib/adlamin
 cp -r ./lib /usr/local/lib/adlamin
 
 chmod +x ./sbin/*
