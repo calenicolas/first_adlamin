@@ -12,6 +12,8 @@ create_iptables() {
   create_chain ADLAMIN-FORWARD_PK
   create_chain ADLAMIN-INPUT_FILTERS
 
+  create_chain DOCKER
+
   iptables -A INPUT -j ADLAMIN-INPUT
 
   iptables -A OUTPUT -j ADLAMIN-OUTPUT
