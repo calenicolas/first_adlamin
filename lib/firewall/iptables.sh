@@ -9,20 +9,15 @@ create_iptables() {
   create_chain ADLAMIN-INPUT
   create_chain ADLAMIN-OUTPUT
   create_chain ADLAMIN-FORWARD
-  echo "dale viejo"
   create_chain ADLAMIN-FORWARD_PK
   create_chain ADLAMIN-INPUT_FILTERS
 
-  iptables -D INPUT -j ADLAMIN-INPUT
   iptables -A INPUT -j ADLAMIN-INPUT
 
-  iptables -D OUTPUT -j ADLAMIN-OUTPUT
   iptables -A OUTPUT -j ADLAMIN-OUTPUT
 
-  iptables -D FORWARD -j ADLAMIN-FORWARD
   iptables -A FORWARD -j ADLAMIN-FORWARD
 
-  iptables -D FORWARD -j ADLAMIN-FORWARD_PK
   iptables -A FORWARD -j ADLAMIN-FORWARD_PK
 }
 
