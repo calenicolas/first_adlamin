@@ -61,7 +61,7 @@ read SSH_INTERFACE
 drop_all
 
 SSH_CLIENT=$(echo $SSH_CLIENT | awk '{ print $1}')
-SAFE_SSH_CLIENT=${SSH_CLIENT:localhost}
+SAFE_SSH_CLIENT=${SSH_CLIENT:-localhost}
 enable_server_for $SSH_INTERFACE tcp 22 $SAFE_SSH_CLIENT
 
 load_input_filters
