@@ -8,9 +8,8 @@ function setup_router() {
   DMZ_ROUTER_IP=$4
   ROUTER_IP=$5
   SUBNET=$6
-  URL=$7
-  DOMAIN_NAME=$8
-  INTERNAL_ROUTER_IP=$9
+  DOMAIN_NAME=$7
+  INTERNAL_ROUTER_IP=$8
 
   # DMZ
 
@@ -24,7 +23,7 @@ function setup_router() {
     forward_to_server $PROJECT_NAME $PROJECT_NAME $ROUTER_IP $SUBNET tcp $PORT
 
     # Suma en el router de la dmz la url con la ip del router del servicio
-    add_server dmz $PROJECT_NAME $URL.$DOMAIN_NAME $ROUTER_IP
+    add_server dmz $PROJECT_NAME $PROJECT_NAME.$DOMAIN_NAME $ROUTER_IP
     router_reload dmz
   fi
 
@@ -38,7 +37,7 @@ function setup_router() {
     forward_to_server $PROJECT_NAME internal $ROUTER_IP $INTERNAL_ROUTER_IP tcp 8080
 
     # Suma en el router de internal la url con la ip del router del servicio
-    add_server internal $PROJECT_NAME internal.$URL.$DOMAIN_NAME $ROUTER_IP
+    add_server internal $PROJECT_NAME $PROJECT_NAME.internal.$DOMAIN_NAME $ROUTER_IP
     router_reload internal
   fi
 }

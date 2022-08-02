@@ -1,19 +1,28 @@
-echo "server {
 
-    server_name $2
+writeServer $1 $2 $3
 
-    add_header X-Frame-Options" 'SAMEORIGIN' ";
+writeServer() {
+  PROJECT_NAME=$1
+  URL=$2
+  ROUTER_IP=$3
 
-    listen 8080;
-    access_log /var/log/nginx/access.log compression;
+  echo "server {
 
-    location / {
-        proxy_pass http://$3:8080;
-        rewrite /(.*) " '/$1' " break;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade" ' $http_upgrade;
-        proxy_set_header Connection ' "'upgrade'" ';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-    }
-}' > /etc/nginx/servers/$1.conf
+      server_name $URL
+
+      add_header X-Frame-Options" 'SAMEORIGIN' ";
+
+      listen 8080;
+      access_log /var/log/nginx/access.log compression;
+
+      location / {
+          proxy_pass http://$ROUTER_IP:8080;
+          rewrite /(.*) " '/$1' " break;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade" ' $http_upgrade;
+          proxy_set_header Connection ' "'upgrade'" ';
+          proxy_set_header Host $host;
+          proxy_cache_bypass $http_upgrade;
+      }
+  }' > /etc/nginx/servers/$PROJECT_NAME.conf
+}

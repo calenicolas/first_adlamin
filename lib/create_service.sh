@@ -6,13 +6,10 @@ source /usr/local/lib/adlamin/router.sh
 
 create_service() {
   #ARGS
-  URL=$1
-  DOMAIN_NAME=$2
-  SERVICE_PATH=$3
-  PROJECT_NAME=$4
-  DMZ_ROUTER_IP=$5
-  INTERNAL_ROUTER_IP=$6
-  GIT_REPO=$7
+  DOMAIN_NAME=$1
+  PROJECT_NAME=$2
+  DMZ_ROUTER_IP=$3
+  INTERNAL_ROUTER_IP=$4
 
   echo "subnet [172.28.0.0/16]"
   read SUBNET
@@ -31,5 +28,5 @@ create_service() {
 
   create_network $PROJECT_NAME $SUBNET
   create_router $PROJECT_NAME $ROUTER_IP
-  setup_router $IS_PUBLIC $IS_PRIVATE $PROJECT_NAME $DMZ_ROUTER_IP $ROUTER_IP $SUBNET $URL $DOMAIN_NAME $INTERNAL_ROUTER_IP
+  setup_router $IS_PUBLIC $IS_PRIVATE $PROJECT_NAME $DMZ_ROUTER_IP $ROUTER_IP $SUBNET $DOMAIN_NAME $INTERNAL_ROUTER_IP
 }

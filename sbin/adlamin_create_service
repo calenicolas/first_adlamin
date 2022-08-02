@@ -2,4 +2,4 @@
 
 source /usr/local/lib/adlamin/create_service.sh
 
-create_service $1 $2 $3 $4 $5 $6 $7
+create_service $1 $2 $3 $4
