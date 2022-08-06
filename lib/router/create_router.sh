@@ -9,7 +9,7 @@ create_router() {
 
     enable_docker_build
 
-    docker build -t router_$NETWORK /usr/local/lib/adlamin/router
+    docker build -t router_$NETWORK /usr/local/lib/adlamin/router/container
 
     docker stop router_$NETWORK
 
