@@ -1,5 +1,5 @@
 #!/bin/bash
 
 docker_stop(){
-    docker stop $1
+    docker stop $1 || true
 }
