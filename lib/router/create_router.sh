@@ -12,7 +12,7 @@ create_router() {
 
     docker build -t router_$NETWORK /usr/local/lib/adlamin/router/container
 
-    docker stop router_$NETWORK
+    docker stop router_$NETWORK || true
 
     docker run -d --rm --network=$NETWORK --ip=$ROUTER_IP --name router_$NETWORK router_$NETWORK
 
