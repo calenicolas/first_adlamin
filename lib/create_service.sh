@@ -10,6 +10,7 @@ create_service() {
   PROJECT_NAME=$2
   DMZ_ROUTER_IP=$3
   INTERNAL_ROUTER_IP=$4
+  INTERFACE=$5
 
   echo "subnet [172.28.0.0/16]"
   read SUBNET
@@ -27,6 +28,6 @@ create_service() {
   read PERSISTENCE_PATH
 
   create_network $PROJECT_NAME $SUBNET
-  create_router $PROJECT_NAME $ROUTER_IP
+  create_router $PROJECT_NAME $ROUTER_IP $INTERFACE
   setup_router $IS_PUBLIC $IS_PRIVATE $PROJECT_NAME $DMZ_ROUTER_IP $ROUTER_IP $SUBNET $DOMAIN_NAME $INTERNAL_ROUTER_IP
 }

@@ -5,7 +5,10 @@ source /usr/local/lib/adlamin/firewall/http.sh
 source /usr/local/lib/adlamin/firewall/https.sh
 
 disable_apt() {
-    disable_dns_client
-    disable_http_client
-    disable_https_client
+    #ARGS
+    INTERFACE=$1
+
+    disable_dns_client $INTERFACE
+    disable_http_client $INTERFACE
+    disable_https_client $INTERFACE
 }

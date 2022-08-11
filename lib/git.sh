@@ -3,11 +3,16 @@ source /usr/local/lib/adlamin/firewall/ssh.sh
 source /usr/local/lib/adlamin/firewall/dns.sh
 
 clone() {
-    enable_dns_client
-    enable_ssh_client
+    #ARGS
+    GIT_REPO=$1
+    REPO_PATH=$1
+    INTERFACE=$3
 
-    git clone $1 $2
+    enable_dns_client $INTERFACE
+    enable_ssh_client $INTERFACE
 
-    disable_ssh_client
-    disable_dns_client
+    git clone $GIT_REPO $REPO_PATH
+
+    disable_ssh_client $INTERFACE
+    disable_dns_client $INTERFACE
 }

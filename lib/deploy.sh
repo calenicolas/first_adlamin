@@ -8,6 +8,7 @@ deploy() {
   #ARGS
   VERSION=$1
   SERVICE_PATH=$2
+  INTERFACE=$3
 
   source $SERVICE_PATH/.service
 
@@ -16,7 +17,7 @@ deploy() {
   clone $GIT_REPO TEMP_$PROJECT_NAME
 
   cd TEMP_$PROJECT_NAME
-  docker_build $IMAGE
+  docker_build $INTERFACE $IMAGE
   cd ..
   rm -rf TEMP_$PROJECT_NAME
 

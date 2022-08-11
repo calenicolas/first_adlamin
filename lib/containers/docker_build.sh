@@ -3,9 +3,13 @@
 source /usr/local/lib/adlamin/mainteinance/docker.sh
 
 docker_build() {
-    enable_docker_build
+    #ARGS
+    INTERFACE=$1
+    IMAGE=$2
 
-    docker build -t $1 .
+    enable_docker_build $INTERFACE
 
-    disable_docker_build
+    docker build -t $IMAGE .
+
+    disable_docker_build $INTERFACE
 }

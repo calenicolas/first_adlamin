@@ -2,4 +2,4 @@
 
 source /usr/local/lib/adlamin/deploy.sh
 
-deploy $1 $2
+deploy $1 $2 $3

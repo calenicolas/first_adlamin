@@ -4,13 +4,15 @@ source /usr/local/lib/adlamin/firewall/http.sh
 source /usr/local/lib/adlamin/firewall/https.sh
 source /usr/local/lib/adlamin/firewall/dns.sh
 
-enable_http_client
-enable_https_client
-enable_dns_client
+INTERFACE=$1
+
+enable_http_client $INTERFACE
+enable_https_client $INTERFACE
+enable_dns_client $INTERFACE
 
 apt update
 apt upgrade
 
-disable_dns_client
-disable_http_client
-disable_https_client
+disable_dns_client $INTERFACE
+disable_http_client $INTERFACE
+disable_https_client $INTERFACE

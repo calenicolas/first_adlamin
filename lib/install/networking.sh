@@ -11,7 +11,7 @@ create_dmz() {
   DMZ_ROUTER_IP=$3
 
   create_network dmz $DMZ_NETWORK
-  create_router dmz $DMZ_ROUTER_IP
+  create_router dmz $DMZ_ROUTER_IP $PUBLIC_INTERFACE
 
   forward_to_server_from_any $PUBLIC_INTERFACE dmz $DMZ_ROUTER_IP tcp 8080
 }
@@ -23,7 +23,7 @@ create_internal() {
   ROUTER_IP=$3
 
   create_network internal $NETWORK
-  create_router internal $ROUTER_IP
+  create_router internal $ROUTER_IP $PUBLIC_INTERFACE
 
   forward_to_server_from_any $INTERFACE dmz $ROUTER_IP tcp 8080
 }

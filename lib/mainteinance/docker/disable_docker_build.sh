@@ -5,12 +5,15 @@ source /usr/local/lib/adlamin/firewall/https.sh
 source /usr/local/lib/adlamin/firewall/http.sh
 
 disable_docker_build() {
-    disable_dns_client
-    disable_https_client
+    #ARGS
+    INTERFACE=$1
 
-    disable_dns_forward_client docker0
-    disable_https_forward_client docker0
-    disable_http_forward_client docker0
+    disable_dns_client $INTERFACE
+    disable_https_client $INTERFACE
 
-    iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+    disable_dns_forward_client $INTERFACE docker0
+    disable_https_forward_client $INTERFACE docker0
+    disable_http_forward_client $INTERFACE docker0
+
+    iptables -t nat -D POSTROUTING -o $INTERFACE -j MASQUERADE
 }
