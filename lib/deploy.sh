@@ -7,10 +7,12 @@ source /usr/local/lib/adlamin/router.sh
 deploy() {
   #ARGS
   VERSION=$1
-  SERVICE_PATH=$2
-  INTERFACE=$3
-
-  source $SERVICE_PATH/.service
+  INTERFACE=$2
+  PROJECT_NAME=$3
+  GIT_REPO=$4
+  IS_PERSISTENT=$5
+  PERSISTENCE_PATH=$6
+  NETWORK=$7
 
   IMAGE=$PROJECT_NAME:$VERSION
 
@@ -31,7 +33,7 @@ deploy() {
   echo "Container ip is $IP"
   fi
 
-  add_route $NETWORK $IP $PORT
+  add_route $NETWORK $IP 8080
 
   router_reload $NETWORK
 }

@@ -16,8 +16,6 @@ create_service() {
   read SUBNET
   echo "router ip [172.28.255.254]"
   read ROUTER_IP
-  echo "port [8080]"
-  read PORT
   echo "is private ? [0]"
   read IS_PRIVATE
   echo "is public ? [0]"
