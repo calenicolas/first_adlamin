@@ -1,6 +1,3 @@
-
-writeServer $1 $2 $3
-
 writeServer() {
   PROJECT_NAME=$1
   URL=$2
@@ -26,3 +23,5 @@ writeServer() {
       }
   }' > /etc/nginx/servers/$PROJECT_NAME.conf
 }
+
+writeServer $1 $2 $3
