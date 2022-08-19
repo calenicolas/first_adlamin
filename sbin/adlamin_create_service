@@ -16,12 +16,12 @@ show_help() {
 }
 
 while getopts ":h" option; do
+   # shellcheck disable=SC2220
    case $option in
       h) # display Help
          show_help
          exit;;
-      *)
-        create_service $1 $2 $3 $4 $5
    esac
 done
 
+create_service $1 $2 $3 $4 $5
