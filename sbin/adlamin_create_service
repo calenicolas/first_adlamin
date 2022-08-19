@@ -2,4 +2,26 @@
 
 source /usr/local/lib/adlamin/create_service.sh
 
-create_service $1 $2 $3 $4 $5
+show_help() {
+  echo "Usage:"
+  echo "adlamin_create_service DOMAIN_NAME PROJECT_NAME DMZ_ROUTER_IP INTERNAL_ROUTER_IP INTERFACE"
+  echo "---"
+  echo "DOMAIN_NAME: Host name where the service will receive the requests"
+  echo "PROJECT_NAME: Name of the project. Must be unique"
+  echo "DMZ_ROUTER_IP: The ip of the network's router where the public incoming requests come from"
+  echo "INTERNAL_ROUTER_IP: The ip of the network's router where the internal incoming requests come from"
+  echo "INTERFACE: Network interface that receives the dmz traffic"
+  echo "Example:"
+  echo "adlamin_create_service test.gallo.com test 172.11.0.254 172.12.0.254 enp0s3"
+}
+
+while getopts ":h" option; do
+   case $option in
+      h) # display Help
+         show_help
+         exit;;
+      *)
+        create_service $1 $2 $3 $4 $5
+   esac
+done
+
