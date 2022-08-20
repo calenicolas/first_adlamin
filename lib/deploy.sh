@@ -1,8 +1,8 @@
 #!/bin/bash
 
 source /usr/local/lib/adlamin/git.sh
-source /usr/local/lib/adlamin/docker.sh
-source /usr/local/lib/adlamin/router.sh
+source /usr/local/lib/adlamin/containers/docker.sh
+source /usr/local/lib/adlamin/router/router.sh
 
 deploy() {
   #ARGS

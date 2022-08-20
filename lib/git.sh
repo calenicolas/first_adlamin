@@ -8,11 +8,20 @@ clone() {
     REPO_PATH=$1
     INTERFACE=$3
 
-    enable_dns_client $INTERFACE
-    enable_ssh_client $INTERFACE
+    IDENTITY=~/.ssh/id_rsa/adlamin
+    if test -f "$IDENTITY";
+    then
+        enable_dns_client $INTERFACE
+        enable_ssh_client $INTERFACE
 
-    git clone $GIT_REPO $REPO_PATH
+        git clone $GIT_REPO $REPO_PATH -i ~/.ssh/id_rsa/adlamin
 
-    disable_ssh_client $INTERFACE
-    disable_dns_client $INTERFACE
+        disable_ssh_client $INTERFACE
+        disable_dns_client $INTERFACE
+      else
+        echo "No identity for clone found under $IDENTITY"
+        exit 1
+    fi
+
+
 }
