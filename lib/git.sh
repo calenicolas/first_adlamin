@@ -14,14 +14,17 @@ clone() {
         enable_dns_client $INTERFACE
         enable_ssh_client $INTERFACE
 
-        git clone $GIT_REPO $REPO_PATH -i ~/.ssh/id_rsa/adlamin
+        git clone -i ~/.ssh/id_rsa/adlamin $GIT_REPO $REPO_PATH
 
         disable_ssh_client $INTERFACE
         disable_dns_client $INTERFACE
       else
-        echo "No identity for clone found under $IDENTITY"
-        exit 1
+        enable_dns_client $INTERFACE
+        enable_ssh_client $INTERFACE
+
+        git clone $GIT_REPO $REPO_PATH
+
+        disable_ssh_client $INTERFACE
+        disable_dns_client $INTERFACE
     fi
-
-
 }
